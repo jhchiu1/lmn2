@@ -19,48 +19,13 @@ class NewNoteForm(forms.ModelForm):
         model = Note
         fields = ('title', 'picture', 'text')
 
-class UserEditForm(UserChangeForm):
-    class Meta:
-        model = UserInfo
-        fields = ('first_name', 'last_name', 'email', 'about_me', )
-        exclude = ('password', )
-
-    def clean_first_name(self):
-        first_name = self.cleaned_data['first_name']
-        if not first_name:
-            raise ValidationError('Please enter your first name')
-
-        return first_name
-
-    def clean_last_name(self):
-        last_name = self.cleaned_data['last_name']
-        if not last_name:
-            raise ValidationError('Please enter your last name')
-
-        return last_name
-
-    def clean_email(self):
-        email = self.cleaned_data['email']
-        if not email:
-            raise ValidationError('Please enter an email address')
-
-        if User.objects.filter(email__iexact=email).exists():
-            raise ValidationError('A user with that email address already exists')
-
-        return email
-
-    def save(self, commit=True):
-        user = super(UserEditForm, self).save(commit=False)
-        user.first_name = self.cleaned_data['first_name']
-        user.last_name = self.cleaned_data['last_name']
-        user.email = self.cleaned_data['email']
-        user.about_me = self.cleaned_data['about_me']
-
-        if commit:
-            user.save()
-
-        return user
-
+class UserEditForm(forms.Form):
+    user_name = forms.CharField(label='User Name')
+    user_first = forms.CharField(label='User First Name')
+    user_last = forms.CharField(label='User Last Name')
+    user_email = forms.EmailField(label='User Email')
+    user_about_me = forms.CharField(label='About Me', widget=forms.Textarea, help_text='What does music mean to you?')
+    user_photo = forms.ImageField(label='User Photo', required=False)
 
 class UserRegistrationForm(UserCreationForm):
 
@@ -110,6 +75,7 @@ class UserRegistrationForm(UserCreationForm):
         user.email = self.cleaned_data['email']
         user.first_name = self.cleaned_data['first_name']
         user.last_name = self.cleaned_data['last_name']
+        user.userinfo = UserInfo()
 
         if commit:
             user.save()
