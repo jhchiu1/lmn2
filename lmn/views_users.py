@@ -9,9 +9,11 @@ from django.contrib.auth import authenticate, login, logout
 
 from django.core.exceptions import PermissionDenied
 from django.utils import timezone
+from django.core.files.uploadedfile import SimpleUploadedFile
+from django.http import HttpResponse, Http404
 
 def user_profile(request, user_pk):
-    """Render a User profile page."""
+    """Render a user profile page."""
 
     user = User.objects.get(pk=user_pk)
     

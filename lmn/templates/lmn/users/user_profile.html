@@ -10,6 +10,9 @@ Text truncated to 200 characters. -->
 <h2 id='username_notes'>{{ user.username }}'s notes</h2>
     <p>{{ user.about_me }}</p>
 
+<h3>About Me</h3>
+<p>{{ about_me }}</p>
+
 {% for note in notes %}
 
 <div class='note' id="note_{{ note.pk }}">
