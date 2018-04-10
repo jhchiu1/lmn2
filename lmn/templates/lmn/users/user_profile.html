@@ -13,7 +13,12 @@ Text truncated to 200 characters. -->
 <h3>About Me</h3>
 <p>{{ about_me }}</p>
 
+{% if user.userinfo.user_photo %}
+    <img src="{% url 'lmn:user_profile_photo' user_pk=user.pk %}" />
+{% endif %}
+
 {% for note in notes %}
+
 
 <div class='note' id="note_{{ note.pk }}">
   <h3 class="note_title"><a href="{% url 'lmn:note_detail' note_pk=note.pk %}">{{ note.title }}</a></h3>
