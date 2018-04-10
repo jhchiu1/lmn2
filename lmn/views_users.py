@@ -13,7 +13,7 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from django.http import HttpResponse, Http404
 
 def user_profile(request, user_pk):
-    """Render a user profile page."""
+    """Render a User profile page."""
 
     user = User.objects.get(pk=user_pk)
     
