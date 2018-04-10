@@ -19,7 +19,11 @@ def user_profile(request, user_pk):
     
     usernotes = Note.objects.filter(user=user).order_by('posted_date').reverse()
 
+<<<<<<< HEAD
     about_me = user.userinfo.about_me if user.userinfo else "YO"
+=======
+    about_me = user.userinfo.about_me if user.userinfo else "YO!"
+>>>>>>> Add comments
     return render(request, 'lmn/users/user_profile.html', {'user' : user , 'notes' : usernotes, 'about_me': about_me })
 
 def user_profile_photo(request, user_pk):

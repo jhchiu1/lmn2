@@ -4,6 +4,8 @@
 
 <H2>Account Information</H2>
 
+<!-- Display user profile photo -->
+
 {% if user.userinfo.user_photo %}
     <img src="{% url 'lmn:user_profile_photo' user_pk=user.pk %}" />
 {% endif %}

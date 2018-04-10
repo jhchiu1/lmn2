@@ -2,17 +2,13 @@
 {% block content %}
 
 
-<!-- A user's profile page.
-
-Includes list of user's notes with title and preview of text.
-Text truncated to 200 characters. -->
-
 <h2 id='username_notes'>{{ user.username }}'s notes</h2>
     <p>{{ user.about_me }}</p>
 
 <h3>About Me</h3>
 <p>{{ about_me }}</p>
 
+<!-- Display user profile photo -->
 {% if user.userinfo.user_photo %}
     <img src="{% url 'lmn:user_profile_photo' user_pk=user.pk %}" />
 {% endif %}
