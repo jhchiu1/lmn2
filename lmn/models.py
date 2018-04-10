@@ -17,11 +17,16 @@ User._meta.get_field('first_name')._blank = False
 
 ''' A User profile '''
 class UserInfo(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    first_name = models.CharField(max_length=200, blank=False)
-    last_name = models.CharField(max_length=200, blank=False)
-    email = models.CharField(max_length=200, blank=False, unique=True)
-    about_me = models.TextField(max_length=1000, blank=False)
+    ''' A User profile '''
+    user = models.OneToOneField(
+        User,
+        on_delete=models.CASCADE,
+    )
+    
+    about_me = models.TextField()
+    user_photo_file_name = models.CharField(null=True, max_length=255)
+    user_photo_type = models.CharField(null=True, max_length=255)
+    user_photo = models.BinaryField(null=True)
 
     def __str__(self):
         return "About me: I am {} and {}.".format(self.user.first_name, self.about_me)

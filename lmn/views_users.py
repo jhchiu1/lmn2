@@ -73,6 +73,7 @@ def my_user_profile(request):
                          "user_email": user.email,
                          "user_about_me": about_me,
                          "user_photo": photo})
+
     return render(request, 'lmn/users/my_user_profile.html', {'form': form, 'user': user})
 
 def register(request):
