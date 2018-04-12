@@ -26,7 +26,7 @@ class UserInfo(models.Model):
     about_me = models.TextField()
     user_photo_file_name = models.CharField(null=True, max_length=255)
     user_photo_type = models.CharField(null=True, max_length=255)
-    user_photo = models.BinaryField(null=True)
+    user_photo = models.BinaryField(null=True, blank=True)
 
     def __str__(self):
         return "About me: I am {} and {}.".format(self.user.first_name, self.about_me)
